@@ -1,0 +1,52 @@
+{% extends 'student/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} Avaliable Books {% endblock%}
+
+{% block 'content' %}
+<style>
+    .one-book {
+        width: 400px;
+        height: 300px;
+        background-color: #151515;
+        margin: 40px 40px;
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(135, 206, 250, .3);
+    }
+
+    .one-book img {
+        width: 398px;
+        height: 200px;
+        border-radius: 5px;
+    }
+
+    .one-book p {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .one-book span {
+        color: lightskyblue;
+    }
+</style>
+<table>
+    <tr rowspan="3" style="display: flex; flex-wrap: wrap;">
+        {% for book in books %}
+        {% if book.borrowed == False %}
+        <td>
+            <div class="one-book">
+                <img src="{{book.get_image_url}}" alt="The image not found">
+                <p class="name"><span>Book ID :</span> {{book.id}}</p>
+                <p class="name"><span>Book Name :</span> {{book.book_name}}</p>
+            </div>
+        </td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+</table>
+{% endblock%}

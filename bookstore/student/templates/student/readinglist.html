@@ -1,0 +1,90 @@
+{% extends 'student/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} ReadingList {% endblock%}
+
+{% block 'content' %}
+<style>
+    .one-book {
+        width: 400px;
+        height: fit-content;
+        background-color: #151515;
+        margin: 40px 40px;
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(135, 206, 250, .3);
+    }
+
+    .one-book img {
+        width: 398px;
+        height: 200px;
+        border-radius: 5px;
+    }
+
+    .one-book p {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .one-book span {
+        color: lightskyblue;
+    }
+
+    .one-book .descripe {
+        height: fit-content;
+        background-color: #202020;
+        border-radius: 5px;
+        padding: 15px 0;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        line-height: 1.8px;
+        font-style: italic;
+    }
+
+    .one-book a {
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        line-height: 3;
+        width: 200px;
+        height: 40px;
+        background-color: black;
+        border-radius: 5px;
+        color: #c9c9c9;
+        font-size: 12px;
+        font-weight: bold;
+        border: 1px solid #c9c9c9;
+        margin: 26px 98px;
+        box-shadow: 0 0 10px rgba(135, 206, 250, .4);
+    }
+</style>
+<table>
+    <tr rowspan="3" style="display: flex; flex-wrap: wrap;">
+        {% for book in student.books.all %}
+        <td>
+            <div class="one-book">
+                <img src="{{book.get_image_url}}" alt="The image not found">
+                <p class="name"><span>Book ID :</span> {{book.id}}</p>
+                <p class="name"><span>Book Name :</span> {{book.book_name}}</p>
+                <br>
+                <div class="descripe">
+                    <p>
+                        <span style="color:#F44336; text-decoration: underline;">Note:</span>
+                        note that you return the book before <span style="color: #F44336">{{book.return_date}} ,</span>
+                        if you won't return it
+                        in
+                        the specified date you will pay a fine..
+                    </p>
+                </div>
+                <a href="{% url 'student.returnform' book.id %}" class="btn">Return</a>
+            </div>
+        </td>
+        {% endfor %}
+    </tr>
+</table>
+{% endblock%}

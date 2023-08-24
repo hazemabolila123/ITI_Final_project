@@ -1,0 +1,133 @@
+{% extends 'student/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} Student info {% endblock%}
+
+{% block 'content' %}
+<style>
+    #form {
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* min-height: 100vh; */
+        background-color: black;
+        color: white;
+    }
+
+    .box {
+        width: 600px;
+        height: fit-content;
+        background-color: #151515;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .box h2 {
+        color: cadetblue;
+        padding: 30px;
+        text-transform: capitalize;
+        font-family: 'Cormorant Upright', serif;
+        font-weight: 900;
+        font-size: 24px;
+    }
+
+    .box .inputclass {
+        border-radius: 10px;
+        padding: 8px;
+        color: #ccc;
+    }
+
+    .box .inputclass input {
+        width: 300px;
+        height: 30px;
+        color: black;
+        text-align: center;
+        border: 1px solid #151515;
+        border-radius: 2px;
+        background-color: #c9c9c9;
+    }
+
+    .box .class {
+        height: 20px;
+        width: 420px;
+    }
+
+    .box .class .checked_label {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+    }
+
+    ::placeholder {
+        color: gray;
+    }
+
+    .box button {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 80px;
+        border: 1px solid white;
+        border-radius: 6px;
+        background-color: black;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .box .fileclass {
+        background-color: #ccc;
+        margin: 12px 150px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        color: gray;
+    }
+
+    .box .fileclass label {
+        color: cadetblue;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .box .fileclass input {
+        margin-top: 5px;
+        position: relative;
+        right: 24px;
+        top: 1px;
+    }
+
+    .box button {
+        width: 300px;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+<div id="form">
+    <div class="box">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Edit Info</h2>
+            <div class="inputclass">
+                <input type="text" disabled name="student_name" value="{{student.name}}">
+                <i></i>
+            </div>
+            <div class="inputclass">
+                <input type="email" disabled name="student.email" value="{{student.email}}">
+                <i></i>
+            </div>
+            <div class="fileclass">
+                <label for="">Choose an image</label>
+                <img src="{{student.get_image_url}}"
+                    style="width: 298px;height: 100px; position: relative; right:0px; margin: 4px 0">
+                <input type="file" name="image" style="height: auto;">
+                <i></i>
+            </div>
+            <div class="edit">
+                <button type="submit">Sumbit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}

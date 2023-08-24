@@ -1,0 +1,70 @@
+{% extends 'student/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} BorrowForm {% endblock%}
+
+{% block 'content' %}
+<style>
+    #form {
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* min-height: 100vh; */
+        background-color: black;
+        color: white;
+    }
+
+    .box {
+        width: 600px;
+        height: fit-content;
+        background-color: #151515;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .box h2 {
+        color: cadetblue;
+        padding: 30px;
+        text-transform: capitalize;
+        font-family: 'Cormorant Upright', serif;
+        font-weight: 900;
+        font-size: 24px;
+    }
+
+    .box button,
+    .box a {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 80px;
+        border: 1px solid white;
+        border-radius: 6px;
+        background-color: black;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        width: 300px;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .box a {
+        text-decoration: none;
+    }
+</style>
+<div id="form">
+    <div class="box">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Are you sure you want to borrow book of name = {{book.book_name}}</h2>
+            <div class="edit">
+                <button type="submit">Sumbit</button>
+            </div>
+            <a href="{% url 'student.books' %}" class="btn">Cancel</a>
+        </form>
+    </div>
+</div>
+
+{% endblock%}

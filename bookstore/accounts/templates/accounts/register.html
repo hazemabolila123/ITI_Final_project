@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/style.css'%}">
+    <!-- boxIcons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barriecito&family=Cormorant+Upright:wght@700&family=Dancing+Script:wght@700&family=Kanit:wght@700&family=Lobster+Two:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&family=Roboto&family=Rubik+Moonrocks&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+    <style>
+        .container input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 0px;
+            font-size: 15px;
+            color: white;
+            padding: 20px 40px 20px 20px;
+            text-align: center;
+        }
+
+        .container input::placeholder {
+            color: gray;
+        }
+
+        .container {
+            width: 420px;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-right: -820px;
+            margin-bottom: -20px;
+            position: fixed;
+            /* margin-top: -300px; */
+        }
+
+        .quote {
+            width: 400px;
+            margin-bottom: 600px;
+            margin-right: 860px;
+        }
+
+        .quote q pre {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #eee
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quote">
+        <q>
+            <pre>
+                "Reading gives you some place to go , when you say
+                                     where I should go..."
+            </pre>
+        </q>
+    </div>
+    <div class="container">
+        <div class="main-box">
+            <h1>Sign up</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    {{form.username}}
+                </div>
+                <div class="input-box">
+                    {{form.email}}
+                </div>
+                <div class="input-box">
+                    {{form.password1}}
+                </div>
+                <div class="input-box">
+                    {{form.password2}}
+                </div>
+                <button class="btn" type="submit" style="color: black;">Sign Up</button>
+                <div class=" register">
+                    <p>Already have an account? <a href="{% url 'accounts.login' %}">Login!</a></p>
+                </div>
+            </form>
+            {% if form.errors %}
+            <p style="color: red; font-size: 18px; ">-Errors</p>
+            {% endif %}
+            {{form.errors}}
+        </div>
+    </div>
+    <script>
+        var form_fields = document.getElementsByTagName('input')
+        form_fields[1].placeholder = 'Enter your username..';
+        form_fields[2].placeholder = 'Enter your email..';
+        form_fields[3].placeholder = 'Enter your password...';
+        form_fields[4].placeholder = 'Confirm your Password...';
+
+
+        for (var field in form_fields) {
+            form_fields[field].className += ' form-control'
+        }
+    </script>
+</body>
+
+
+</html>

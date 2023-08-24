@@ -1,0 +1,148 @@
+{% extends 'adminModule/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} Add Books {% endblock%}
+
+{% block 'content' %}
+<style>
+    #form {
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* min-height: 100vh; */
+        background-color: black;
+        color: white;
+    }
+
+    .box {
+        width: 600px;
+        height: fit-content;
+        background-color: #151515;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .box h2 {
+        color: cadetblue;
+        padding: 40px;
+        text-transform: capitalize;
+        font-family: 'Cormorant Upright', serif;
+        font-weight: 900;
+        font-size: 24px;
+    }
+
+    .box .inputclass {
+        border-radius: 10px;
+        padding: 20px;
+        color: #ccc;
+        margin: -15px 0px;
+    }
+
+    .box .inputclass input {
+        width: 300px;
+        height: 30px;
+        color: black;
+        text-align: center;
+        border: 1px solid #151515;
+        border-radius: 2px;
+        background-color: #c9c9c9;
+    }
+
+    .box .class {
+        height: 20px;
+        width: 420px;
+    }
+
+    .box .class .checked_label {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+    }
+
+    ::placeholder {
+        color: gray;
+    }
+
+    .box button {
+        display: block;
+        margin: 30px auto;
+        padding: 12px 80px;
+        border: 1px solid white;
+        border-radius: 6px;
+        background-color: black;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        width: 300px;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .box .fileclass {
+        background-color: #ccc;
+        margin: 20px 150px 10px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        color: gray;
+    }
+
+    .box .fileclass label {
+        color: cadetblue;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .box .fileclass input {
+        margin-top: 5px;
+        position: relative;
+        right: 24px;
+        top: 1px;
+    }
+
+    .box button {
+        width: 300px;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+<div id="form">
+    <div class="box">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Add new book</h2>
+            <div class="inputclass">
+                <input type="text" required placeholder="Enter the book name" name="book_name">
+                <i></i>
+            </div>
+            <div class="inputclass">
+                <input type="text" required placeholder="Enter the author name" name="author_name">
+                <i></i>
+            </div>
+            <div class="fileclass">
+                <label for="">Choose an image</label>
+                <input type="file" required name="image" style="height: auto;">
+                <i></i>
+            </div>
+            <div class="inputclass">
+                <input type="text" placeholder="Enter the book description" name="description" style="height: 50px;">
+                <i></i>
+            </div>
+
+            <div class="class" style="margin: 15px 0 ;">
+                <input type="checkbox" name="borrowed" id="exampleCheck1">
+                <label class="checked_label" for="exampleCheck1">is_borrowed</label>
+                <i></i>
+            </div>
+
+            <div class="edit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}

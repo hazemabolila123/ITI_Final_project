@@ -1,0 +1,115 @@
+{% extends 'student/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} Books {% endblock%}
+
+{% block 'content' %}
+<style>
+    .show-data {
+        border: 1px solid #3a3737;
+        background-color: #151515;
+        color: #c9c9c9;
+        /* width: 70%; */
+        margin: 45px auto;
+        border-spacing: 0px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .show-data td {
+        padding: 15px;
+        background-color: #151515;
+        border: 1px solid #2a2929;
+        /* width: 50px; */
+    }
+
+    .show-data tr .id {
+        width: 100px;
+    }
+
+    .show-data tr .name,
+    .show-data tr .btn {
+        width: 150px;
+    }
+
+    .show-data tr .image {
+        width: 200px;
+        height: 120px;
+        border-radius: 4px;
+    }
+
+    .show-data th {
+        background-color: #151515;
+        height: 60px;
+        border: 1px solid #2a2929;
+        color: cadetblue;
+        font-size: 18px;
+    }
+
+    .show-data tr a,
+    .show-data tr a {
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        line-height: 3;
+        width: 100px;
+        height: 40px;
+        background-color: #0000005e;
+        border-radius: 5px;
+        color: #c9c9c9;
+        font-size: 12px;
+        font-weight: bold;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+    }
+
+    .show-data tr .btn2 {
+        background-color: #0000005e;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+    }
+
+    .show-data tr .edit {
+        background-color: #0000005e;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+    }
+
+    .show-data tr .create {
+        width: 300px;
+        line-height: 3;
+        background-color: #0000005e;
+        border: 2px solid rgba(255, 255, 255, .8);
+        box-shadow: 0 0 8px rgba(135, 206, 250, .3);
+    }
+</style>
+<table class="show-data">
+    <tr>
+        <th>ID</th>
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>Image</th>
+        <th>Borrowed</th>
+        <th>Show</th>
+        <th>Borrow</th>
+    </tr>
+    {% for book in books%}
+    <tr>
+        <td class="id">{{book.id}}</td>
+        <td class="name">{{book.book_name}}</td>
+        <td class="name">{{book.author_name}}</td>
+        <td><img src="{{book.get_image_url}}" class="image"></td>
+        <td class="name">
+            {% if book.borrowed%}
+            <i class='bx bxs-check-square' style="color: white; font-size: 30px;"></i>
+            {% else %}
+            <i class='bx bxs-x-circle' style="color: white; font-size: 30px;"></i>
+            {% endif %}
+        </td>
+        <td class="btn"><a href="{% url 'student.showbook' book.id %}">Show</a></td>
+        <td class="btn"><a href="{% url 'student.borrow' book.id %}">Borrow</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

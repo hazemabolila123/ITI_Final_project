@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_DashBoard</title>
+    <!-- CSS Styling -->
+    <link rel="stylesheet" href="{% static 'adminModule/css/style.css'%}">
+    <!-- boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barriecito&family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Lobster+Two:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&family=Roboto&family=Rubik+Moonrocks&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@700&family=Kanit:wght@700&family=Open+Sans:ital,wght@0,700;1,300&family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;600;800;900&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'admin.index' %}" style="font-family: 'Tilt Prism', cursive;">AdminDashBoard</a>
+    </div>
+    <a href="{% url 'accounts.logout' %}">
+        <i class='bx bx-log-out-circle bx-rotate-90' style="color: #40b7b1;
+       position: relative; left: 1432px; bottom:54px; font-size: 22px;"></i>
+    </a>
+    <div class="hello">
+        <h2 style="font-family: ar;">Hello to admin dashboard</h2>
+    </div>
+    <div class="sidebar">
+        <div class="user">
+            <i class='bx bx-user-circle' style="font-size: 30px;" fo></i>
+            <p class="name">{{request.user}}</p>
+        </div>
+        <div class="links">
+            <i class='bx bx-book' style="font-size: 30px;" for="name1"></i>
+            <a href="{% url 'admin.books'%}" class="name1">Books</a>
+        </div>
+        <div class="links">
+            <i class='bx bxs-book-reader' style="font-size: 30px;" for="name2"></i>
+            <a href="{% url 'admin.borrowedbook'%}" class="name2">Borrowed Books</a>
+        </div>
+        <div class="links">
+            <i class='bx bxs-book-add' style="font-size: 30px;" for="name3"></i>
+            <a href="{% url 'admin.avaliablebook'%}" class="name3">Avaliable Books</a>
+        </div>
+        <div class="links">
+            <i class='bx bxs-user-detail' style="font-size: 30px;" for="name3"></i>
+            <a href="{% url 'admin.users' %}" class="name3">Users</a>
+        </div>
+
+        <div class="links">
+            <i class='bx bx-search-alt' style="font-size: 30px;" for="name3"></i>
+            <a href="{% url 'admin.search' %}" class="name3">Search for student</a>
+        </div>
+        <div class="links">
+            <i class='bx bxs-shield-minus' style="font-size: 30px;" for="name3"></i>
+            <a href="{% url 'admin.password' %}" class="name3">Change Password</a>
+        </div>
+    </div>
+</body>
+
+</html>

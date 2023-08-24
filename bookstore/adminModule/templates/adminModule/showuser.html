@@ -1,0 +1,68 @@
+{% extends 'adminModule/layouts/base.html'%}
+
+{% load static %}
+{% block 'title'%} Show User {% endblock%}
+
+{% block 'content' %}
+<style>
+    .one-book {
+        width: 400px;
+        height: fit-content;
+        background-color: #151515;
+        margin: 40px 525px;
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(135, 206, 250, .3);
+        overflow: hidden;
+    }
+
+    .one-book img {
+        width: 398px;
+        height: 200px;
+        border-radius: 5px;
+    }
+
+    .one-book p {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .one-book span {
+        color: lightskyblue;
+    }
+</style>
+<table>
+    <tr>
+        {% if user %}
+        <td>
+            <div class="one-book">
+                <div>
+                    <img src="{{user.get_image_url}}" alt="the student has no image" style="color: white;">
+                </div>
+                <p class="name"><span>UserID :</span> {{user.id}}</p>
+                <p class="name"><span>UserName :</span> {{user.name}}</p>
+                <p class="name"><span>Email :</span> {{user.email}}</p>
+                {% if user.is_superuser%}
+                <p class="name"><span>Role :</span> Admin</p>
+                {% else %}
+                <p class="name"><span>Role :</span> User</p>
+                {% endif %}
+                <p class="name"><span>Date Joined :</span> {{user.date_joined}}</p>
+                <br>
+                <p class="name"><span>Borrrowed Books :</span></p>
+                {% for book in user.books.all %}
+                <li style="padding:15px ; border: 1px solid white;">
+                    <a href="{% url 'admin.showbook' book.id%}"
+                        style=" text-decoration: none; color: white; font-weight:bold">{{book.book_name}}</a>
+                </li>
+                {% endfor %}
+            </div>
+        </td>
+        {% endif %}
+    </tr>
+</table>
+{% endblock%}
